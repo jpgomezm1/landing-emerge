@@ -159,34 +159,6 @@ const ValueProps: React.FC = () => {
           ))}
         </motion.div>
         
-        {/* CTA Banner for eMerge Americas */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 bg-gradient-to-r from-[#131330] to-[#1a1a40] border border-[#9c5fff]/20 rounded-xl p-6 md:p-8"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <div className="inline-block bg-[#9c5fff]/20 rounded-full px-4 py-1 mb-3">
-                <span className="text-[#9c5fff] text-sm font-medium flex items-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-[#9c5fff] animate-pulse"></span>
-                  eMerge Americas 2025 Special
-                </span>
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-2">Get a Free Process Automation Assessment</h3>
-              <p className="text-gray-300">Visit our booth #247 for a complimentary evaluation of your manual processes</p>
-            </div>
-            <a 
-              href="#contact"
-              className="flex-shrink-0 bg-[#9c5fff] text-white px-6 py-3 rounded-full font-medium hover:bg-[#8445ff] transition-colors flex items-center gap-2"
-            >
-              Reserve Your Spot
-              <TrendingUp className="w-4 h-4" />
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

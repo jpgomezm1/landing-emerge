@@ -132,20 +132,6 @@ const UseCases: React.FC = () => {
           ))}
         </motion.div>
         
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 text-center"
-        >
-          <a 
-            href="#contact"
-            className="inline-block bg-[#9c5fff] hover:bg-[#8445ff] text-white px-6 py-3 rounded-full font-medium transition-colors"
-          >
-            Get Your Free Process Assessment
-          </a>
-        </motion.div>
       </div>
     </section>
   );

@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ onGetAudit }) => {
               onClick={onGetAudit}
               className="bg-[#9c5fff] text-white px-6 py-2 rounded-full hover:bg-[#8445ff] transition-colors"
             >
-              Get Your Free AI Audit
+              Get Your Free AI Diagnosis
             </button>
           </div>
 

@@ -38,7 +38,10 @@ function App() {
       <Navbar onGetAudit={() => openForm('assessment')} />
       
       <main>
-        <Hero onGetAudit={() => openForm('assessment')} />
+        <Hero 
+          onGetAudit={() => openForm('assessment')} 
+          onGetPlaybook={() => openForm('playbook')} 
+        />
         <ValueProps />
         <UseCases />
         <LeadMagnets 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, ArrowRight, FileText, Calendar, CheckCircle2 } from 'lucide-react';
+import { Download, ArrowRight, FileText, CheckCircle2, Cpu } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface LeadMagnetsProps {
@@ -75,39 +75,43 @@ const LeadMagnets: React.FC<LeadMagnetsProps> = ({ onGetAudit, onGetPlaybook }) 
             </div>
           </motion.div>
 
-          {/* eMerge Exclusive Process Audit */}
+          {/* AI-Scan Diagnosis */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-gradient-to-br from-[#141435] to-[#1a1a40] border border-[#9c5fff]/30 rounded-xl p-8 flex flex-col h-full relative"
+            className="bg-gradient-to-br from-[#141435] to-[#1a1a40] border border-[#9c5fff]/30 rounded-xl p-8 flex flex-col h-full relative overflow-hidden"
           >
-            <div className="absolute top-3 right-3">
+            {/* Badge */}
+            <div className="absolute top-3 right-3 z-10">
               <span className="bg-[#9c5fff]/20 text-[#9c5fff] text-xs font-medium px-3 py-1 rounded-full">
-                eMerge Exclusive
+                AI-Powered
               </span>
             </div>
             
+            {/* Background decoration */}
+            <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-[#9c5fff]/5 rounded-full blur-3xl"></div>
+            
             <div className="flex items-center gap-4 mb-6">
               <div className="bg-[#9c5fff]/10 p-3 rounded-lg">
-                <Calendar className="w-6 h-6 text-[#9c5fff]" />
+                <Cpu className="w-6 h-6 text-[#9c5fff]" />
               </div>
               <h3 className="text-xl font-bold text-white">
-                Free Process Assessment
+                AI-Scan: Your Free Diagnosis
               </h3>
             </div>
             
             <p className="text-gray-300 mb-6">
-              Visit our booth at eMerge Americas for a complimentary consultation and custom automation roadmap.
+              Get a personalized AI diagnosis of your manual processes and receive a custom automation roadmap to boost efficiency.
             </p>
             
             <div className="bg-[#0a0a1f]/50 rounded-lg p-4 mb-6">
               <ul className="space-y-3">
                 {[
-                  'Analysis of your manual processes',
-                  'Custom automation plan',
-                  'ROI projection ($1,500 value)'
+                  'AI analysis of your specific pain points',
+                  'Personalized automation prescription',
+                  'Implementation strategy ($1,500 value)'
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
@@ -122,12 +126,12 @@ const LeadMagnets: React.FC<LeadMagnetsProps> = ({ onGetAudit, onGetPlaybook }) 
                 onClick={onGetAudit}
                 className="w-full bg-[#9c5fff] text-white px-6 py-3 rounded-full hover:bg-[#8445ff] transition-colors flex items-center justify-center gap-2"
               >
-                Reserve Your Free Assessment
+                Get Your AI Diagnosis
                 <ArrowRight className="w-5 h-5" />
               </button>
               
               <p className="text-center text-sm text-gray-400 mt-3">
-                Limited spots available • Booth #247
+                5-minute process • Instant AI insights
               </p>
             </div>
           </motion.div>

@@ -100,10 +100,10 @@ const SocialProof: React.FC = () => {
           className="text-center"
         >
           <p className="text-xl font-medium mb-4">
-            Visit us at Booth #247 during eMerge Americas
+            Visit us at Booth SS72 during eMerge Americas
           </p>
           <p className="text-gray-400">
-            April 21-22, 2025 • Miami Beach Convention Center
+            March 27-28, 2025 • Miami Beach Convention Center
           </p>
         </motion.div>
       </div>

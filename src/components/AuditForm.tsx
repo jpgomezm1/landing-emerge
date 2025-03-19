@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Check, Calendar, Download, ArrowRight, FileText } from 'lucide-react';
+import { X, Check, Calendar, Download, ArrowRight, FileText, Cpu, Activity, Clock } from 'lucide-react';
 
 interface AuditFormProps {
   onClose: () => void;
@@ -15,6 +15,10 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
     email: '',
     whatsapp: '',
     processes: '',
+    timeSpent: '',
+    painPoints: '',
+    currentTools: '',
+    companyContext: '',
     visitBooth: false
   });
 
@@ -61,14 +65,24 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
     "CRM Data Management"
   ];
 
+  // Common pain points for suggestions
+  const commonPainPoints = [
+    "Time-consuming manual tasks",
+    "Data entry errors",
+    "Inconsistent processes",
+    "Communication gaps",
+    "Slow reporting",
+    "Repetitive tasks"
+  ];
+
   // Determine form title and badge text based on form type
   const formTitle = formType === 'playbook' 
     ? 'Process Automation Playbook' 
-    : 'Free Process Assessment';
+    : 'AI-Scan: Your Free Diagnosis';
   
   const badgeText = formType === 'playbook'
     ? 'Free Download'
-    : 'eMerge Americas Exclusive';
+    : 'AI-Powered';
 
   return (
     <div className="p-6 relative overflow-hidden">
@@ -86,7 +100,7 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
           </div>
           <h2 className="text-2xl font-bold">
             {formSubmitted ? 
-              (formType === 'playbook' ? 'Download Ready!' : 'Reservation Complete!') : 
+              (formType === 'playbook' ? 'Download Ready!' : 'AI Diagnosis Complete!') : 
               formTitle}
           </h2>
         </div>
@@ -130,22 +144,20 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
               </button>
             </>
           ) : (
-            // Assessment success message
+            // AI Diagnosis success message
             <>
-              <h3 className="text-xl font-bold mb-2">Thanks for reserving your spot!</h3>
+              <h3 className="text-xl font-bold mb-2">Your AI Diagnosis is Processing!</h3>
               <p className="text-gray-300 mb-6">
-                We've received your information and your Process Assessment reservation is confirmed. 
-                {formData.visitBooth ? 
-                  " We look forward to meeting you at Booth #247 during eMerge Americas." : 
-                  " A member of our team will contact you shortly to schedule your assessment."}
+                Our AI is analyzing your processes and preparing a personalized automation prescription. 
+                You'll receive your diagnosis via email within the next 15 minutes.
               </p>
               
               <div className="bg-[#131330] border border-[#9c5fff]/20 rounded-lg p-4 mb-6 inline-block mx-auto">
                 <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-5 h-5 text-[#9c5fff]" />
-                  <p className="font-medium">eMerge Americas 2025</p>
+                  <Cpu className="w-5 h-5 text-[#9c5fff]" />
+                  <p className="font-medium">AI Process Analysis</p>
                 </div>
-                <p className="text-sm text-gray-300">April 21-22 • Booth #247</p>
+                <p className="text-sm text-gray-300">Detailed Report • Automation Prescription</p>
               </div>
               
               <button
@@ -154,6 +166,12 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
               >
                 Close
               </button>
+              
+              {formData.visitBooth && (
+                <p className="text-sm text-gray-400 mt-4">
+                  We look forward to discussing your AI diagnosis at Booth SS72 during eMerge Americas!
+                </p>
+              )}
             </>
           )}
         </div>
@@ -169,7 +187,7 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
                 </p>
               ) : (
                 <p className="text-gray-300 mb-6">
-                  Reserve your free Process Automation Assessment ($1,500 value).
+                  Get a personalized AI diagnosis of your business processes and receive custom automation recommendations to boost efficiency.
                 </p>
               )}
               
@@ -270,9 +288,10 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
                   <button
                     type="button"
                     onClick={() => setFormStep(2)}
-                    className="w-full bg-[#9c5fff] text-white px-6 py-3 rounded-full hover:bg-[#8445ff] transition-colors"
+                    className="w-full bg-[#9c5fff] text-white px-6 py-3 rounded-full hover:bg-[#8445ff] transition-colors flex items-center justify-center gap-2"
                   >
-                    Continue
+                    Continue to Process Diagnosis
+                    <ArrowRight className="w-5 h-5" />
                   </button>
                 )}
               </div>
@@ -280,9 +299,10 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
           ) : (
             // Step 2: Process Information (only for Assessment form)
             <div className="space-y-6">
+              {/* Process identification */}
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  Which processes would you like to automate?*
+                  Which processes would you like our AI to diagnose?*
                 </label>
                 
                 <div className="mb-3">
@@ -309,10 +329,102 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
                 <textarea
                   name="processes"
                   required
-                  rows={4}
-                  placeholder="Describe the manual processes you're looking to automate..."
+                  rows={3}
+                  placeholder="Describe the manual processes you'd like our AI to diagnose and automate..."
                   className="w-full bg-[#131330] border border-[#9c5fff]/20 rounded-lg px-4 py-2 focus:outline-none focus:border-[#9c5fff]"
                   value={formData.processes}
+                  onChange={handleChange}
+                ></textarea>
+              </div>
+              
+              {/* Time spent */}
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium mb-2">
+                  <Clock className="w-4 h-4 text-[#9c5fff]" />
+                  Approximately how much time do these processes take weekly?*
+                </label>
+                <select
+                  name="timeSpent"
+                  required
+                  className="w-full bg-[#131330] border border-[#9c5fff]/20 rounded-lg px-4 py-2 focus:outline-none focus:border-[#9c5fff]"
+                  value={formData.timeSpent}
+                  onChange={handleChange}
+                >
+                  <option value="">Select time spent</option>
+                  <option value="1-5 hours">1-5 hours per week</option>
+                  <option value="6-10 hours">6-10 hours per week</option>
+                  <option value="11-20 hours">11-20 hours per week</option>
+                  <option value="21-40 hours">21-40 hours per week</option>
+                  <option value="40+ hours">More than 40 hours per week</option>
+                </select>
+              </div>
+              
+              {/* Pain points */}
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium mb-2">
+                  <Activity className="w-4 h-4 text-[#9c5fff]" />
+                  What are your biggest pain points with these processes?*
+                </label>
+                
+                <div className="mb-3">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {commonPainPoints.map((painPoint) => (
+                      <button
+                        key={painPoint}
+                        type="button"
+                        className="text-xs bg-[#131330] text-gray-300 border border-[#9c5fff]/10 px-3 py-1 rounded-full hover:border-[#9c5fff]/30 transition-colors"
+                        onClick={() => {
+                          const currentPainPoints = formData.painPoints;
+                          const newPainPoints = currentPainPoints 
+                            ? `${currentPainPoints}, ${painPoint}` 
+                            : painPoint;
+                          setFormData({ ...formData, painPoints: newPainPoints });
+                        }}
+                      >
+                        + {painPoint}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                <textarea
+                  name="painPoints"
+                  required
+                  rows={2}
+                  placeholder="Describe what frustrates you about these processes..."
+                  className="w-full bg-[#131330] border border-[#9c5fff]/20 rounded-lg px-4 py-2 focus:outline-none focus:border-[#9c5fff]"
+                  value={formData.painPoints}
+                  onChange={handleChange}
+                ></textarea>
+              </div>
+              
+              {/* Current tools */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  What tools or software do you currently use for these processes? (Optional)
+                </label>
+                <input
+                  type="text"
+                  name="currentTools"
+                  placeholder="E.g., Excel, Google Sheets, Salesforce, etc."
+                  className="w-full bg-[#131330] border border-[#9c5fff]/20 rounded-lg px-4 py-2 focus:outline-none focus:border-[#9c5fff]"
+                  value={formData.currentTools}
+                  onChange={handleChange}
+                />
+              </div>
+              
+              {/* Company context */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Tell us a bit about your company/team*
+                </label>
+                <textarea
+                  name="companyContext"
+                  required
+                  rows={3}
+                  placeholder="Brief description of your company, team size, main activities, and any specific challenges you're facing..."
+                  className="w-full bg-[#131330] border border-[#9c5fff]/20 rounded-lg px-4 py-2 focus:outline-none focus:border-[#9c5fff]"
+                  value={formData.companyContext || ''}
                   onChange={handleChange}
                 ></textarea>
               </div>
@@ -327,7 +439,7 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
                     onChange={handleCheckboxChange}
                   />
                   <span className="text-sm text-gray-300">
-                    I plan to visit Booth #247 at eMerge Americas for an in-person consultation
+                    I plan to visit Booth #247 at eMerge Americas for an in-person consultation about my AI diagnosis
                   </span>
                 </label>
               </div>
@@ -342,14 +454,15 @@ const AuditForm: React.FC<AuditFormProps> = ({ onClose, formType = 'assessment' 
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-[#9c5fff] text-white px-6 py-3 rounded-full hover:bg-[#8445ff] transition-colors"
+                  className="flex-1 bg-[#9c5fff] text-white px-6 py-3 rounded-full hover:bg-[#8445ff] transition-colors flex items-center justify-center gap-2"
                 >
-                  Reserve My Free Assessment
+                  Get My AI Diagnosis
+                  <Cpu className="w-5 h-5" />
                 </button>
               </div>
               
               <p className="text-xs text-center text-gray-400 mt-2">
-                Limited spots available for in-person consultations
+                Your personalized diagnosis will be delivered to your email in ~15 minutes
               </p>
             </div>
           )}
